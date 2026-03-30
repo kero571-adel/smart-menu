@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EliteEats - Premium Digital Menu</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Splash Screen / Hero Section -->
+    <section class="splash-screen" id="splashScreen">
+      <div class="splash-content">
+        <div class="logo-container">
+          <h1 class="restaurant-name">EliteEats</h1>
+          <p class="tagline">Taste Premium Excellence</p>
+        </div>
+        <button class="cta-button" id="viewMenuBtn">View Menu</button>
+      </div>
+      <div class="splash-background"></div>
+    </section>
+
+    <!-- Main Menu Section -->
+    <main class="menu-container">
+      <!-- Sticky Category Navigation -->
+      <nav class="category-nav">
+        <div class="category-nav-wrapper">
+          <button class="category-btn active" data-category="all">All</button>
+          <button class="category-btn" data-category="burgers">Burgers</button>
+          <button class="category-btn" data-category="pizza">Pizza</button>
+          <button class="category-btn" data-category="drinks">Drinks</button>
+          <button class="category-btn" data-category="desserts">
+            Desserts
+          </button>
+        </div>
+      </nav>
+
+      <!-- Menu Grid -->
+      <div class="menu-grid" id="menuGrid">
+        <!-- Menu items will be dynamically inserted here -->
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 EliteEats. All rights reserved.</p>
+      <p>📍 Order Now | 🚀 Fast Delivery</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
