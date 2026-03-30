@@ -141,7 +141,7 @@ function renderMenu(category = "all") {
   menuGrid.innerHTML = "";
   const filteredMenu =
     category === "all"
-      ? menuData
+      ? menuData.filter((item) => item.badge === "Popular")
       : menuData.filter((item) => item.category === category);
 
   filteredMenu.forEach((item) => {
