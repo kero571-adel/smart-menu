@@ -24,18 +24,20 @@ body {
 }
 
 /* Splash Screen with Kitchen Background */
+/* Splash Screen */
 .splash-screen {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed; /* مهم عشان تغطي الصفحة كلها */
+  position: fixed; /* مهم جداً */
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 9999;
+  z-index: 9999; /* أعلى من أي حاجة */
   overflow: hidden;
-  transition: opacity 0.5s ease, visibility 0.5s ease; /* إضافة الانتقال الناعم */
+  background-color: #0a0a0a; /* لون غامق كـ fallback */
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .splash-background {
@@ -46,12 +48,22 @@ body {
   height: 100%;
   background: linear-gradient(
       135deg,
-      rgba(18, 18, 18, 0.85),
-      rgba(18, 18, 18, 0.75)
+      rgba(18, 18, 18, 0.95),
+      rgba(18, 18, 18, 0.85)
     ),
-    url("https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80")
+    url("https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80")
       center/cover no-repeat;
+  filter: blur(8px); /* blur على الخلفية */
+  transform: scale(1.1); /* عشان الـ blur مايظهرش حواف بيضاء */
   z-index: 1;
+  opacity: 0;
+  animation: fadeInBg 1s ease-out forwards;
+}
+
+@keyframes fadeInBg {
+  to {
+    opacity: 1;
+  }
 }
 
 .splash-content {
@@ -59,6 +71,29 @@ body {
   z-index: 2;
   text-align: center;
   animation: fadeIn 1s ease-out;
+}
+
+/* إخفاء الـ menu في البداية */
+.menu-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  min-height: 100vh;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+}
+
+.menu-container.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Splash Screen مخفي */
+.splash-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .restaurant-name {

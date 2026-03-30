@@ -103,17 +103,7 @@ const menuData = [
   },
 ];
 // Auto-hide splash after 5 seconds
-setTimeout(() => {
-  const splashScreen = document.getElementById("splashScreen");
-  if (splashScreen) {
-    splashScreen.style.opacity = "0";
-    splashScreen.style.visibility = "hidden";
-    splashScreen.style.pointerEvents = "none";
-    setTimeout(() => {
-      splashScreen.style.display = "none";
-    }, 500);
-  }
-}, 5000);
+
 const menuGrid = document.getElementById("menuGrid");
 const categoryBtns = document.querySelectorAll(".category-btn");
 const viewMenuBtn = document.getElementById("viewMenuBtn");
@@ -359,23 +349,32 @@ categoryBtns.forEach((btn) => {
 
 // View Menu Button
 // Smooth Scroll + Hide Splash for CTA
+// Smooth Scroll for CTA
 if (viewMenuBtn && menuContainer) {
   viewMenuBtn.addEventListener("click", () => {
-    // Hide splash screen completely
     const splashScreen = document.getElementById("splashScreen");
-    splashScreen.style.opacity = "0";
-    splashScreen.style.visibility = "hidden";
-    splashScreen.style.pointerEvents = "none";
 
-    // Optional: Remove from DOM after transition
+    // إخفاء الـ splash screen
+    splashScreen.classList.add("hidden");
+
+    // إظهار الـ menu
+    menuContainer.classList.add("visible");
+
+    // Scroll للـ menu
     setTimeout(() => {
-      splashScreen.style.display = "none";
-    }, 500); // Wait for fade out transition
-
-    // Scroll to menu
-    menuContainer.scrollIntoView({ behavior: "smooth" });
+      menuContainer.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   });
 }
+
+// إخفاء الـ splash screen أوتوماتيك بعد 5 ثواني (اختياري)
+setTimeout(() => {
+  const splashScreen = document.getElementById("splashScreen");
+  if (splashScreen && !splashScreen.classList.contains("hidden")) {
+    splashScreen.classList.add("hidden");
+    menuContainer.classList.add("visible");
+  }
+}, 5000);
 
 // Initialize
 renderMenu();
