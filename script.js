@@ -14,17 +14,6 @@ const menuData = [
       "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
   },
   {
-    id: 2,
-    name: "Double Bacon Smash",
-    description:
-      "Two smashed patties, crispy smoked bacon, american cheese, and caramelized onions.",
-    price: 16.99,
-    category: "burgers",
-    badge: "Hot",
-    image:
-      "https://images.unsplash.com/photo-1594212699512-7812626ed53f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  },
-  {
     id: 3,
     name: "Truffle Mushroom Burger",
     description:
