@@ -1,6 +1,10 @@
 // Restaurant WhatsApp Number (CHANGE THIS!)
 const RESTAURANT_PHONE = "201272442140";
-
+// Initialize
+document.addEventListener("DOMContentLoaded", () => {
+  loadCartFromStorage(); // ✅ تحميل السلة المحفوظة
+  renderMenu();
+});
 const menuData = [
   {
     id: 1,
@@ -172,7 +176,24 @@ ${badgeHtml}
     menuGrid.appendChild(card);
   });
 }
+// Load cart from localStorage on page load
+function loadCartFromStorage() {
+  const savedCart = localStorage.getItem("eliteeats_cart");
+  if (savedCart) {
+    cart = JSON.parse(savedCart);
+    updateCartUI();
+  }
+}
 
+// Save cart to localStorage
+function saveCartToStorage() {
+  localStorage.setItem("eliteeats_cart", JSON.stringify(cart));
+}
+
+// Clear cart from localStorage
+function clearCartFromStorage() {
+  localStorage.removeItem("eliteeats_cart");
+}
 // Image Modal Functions
 function openImageModal(imageSrc) {
   imageModalContent.src = imageSrc;
@@ -194,16 +215,21 @@ function addToCart(id) {
     cart.push({ ...item, quantity: 1 });
   }
 
+  saveCartToStorage(); // ✅ حفظ في localStorage
   updateCartUI();
+
+  // Open sidebar to show feedback
   cartSidebar.classList.add("active");
   overlay.classList.add("active");
 }
 
 function removeFromCart(id) {
   cart = cart.filter((item) => item.id !== id);
+  saveCartToStorage();
   updateCartUI();
 }
 
+// Update Quantity
 function updateQuantity(id, change) {
   const item = cart.find((c) => c.id === id);
   if (item) {
@@ -211,6 +237,7 @@ function updateQuantity(id, change) {
     if (item.quantity <= 0) {
       removeFromCart(id);
     } else {
+      saveCartToStorage();
       updateCartUI();
     }
   }
@@ -331,7 +358,9 @@ checkoutForm.addEventListener("submit", (e) => {
 
   window.open(whatsappUrl, "_blank");
 
+  // ✅ Clear cart after successful order
   cart = [];
+  clearCartFromStorage();
   updateCartUI();
   checkoutModal.classList.remove("active");
   overlay.classList.remove("active");
